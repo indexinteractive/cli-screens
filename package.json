@@ -1,9 +1,14 @@
 {
   "name": "@ind3x/cli-screens",
   "version": "1.0.0",
+  "homepage": "https://ind3x.games",
   "packageManager": "bun@1.3.14",
   "author": "contact@ind3x.games",
   "description": "A small screen stack library for interactive CLI applications",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indexinteractive/cli-screens.git"
+  },
   "keywords": [
     "cli",
     "terminal",
@@ -28,11 +33,11 @@
   "scripts": {
     "build": "bun run build.ts",
     "test": "bun run build && bun test",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "check": "bun pm pack --dry-run"
   },
   "devDependencies": {
-    "@types/bun": "^1.3.0",
-    "@typescript/native": "npm:typescript@^7.0.2",
+    "@types/bun": "^1.3.14",
     "bun-plugin-dts": "^0.4.0",
     "typescript": "6.0.2"
   }
