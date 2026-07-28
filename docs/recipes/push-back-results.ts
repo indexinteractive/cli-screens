@@ -1,26 +1,12 @@
-import { createCli, defineScreen, type Screen } from '@ind3x/cli-screens';
-
-// the 2nd type argument is for the expected return type
-function confirmation(): Screen<void, boolean> {
-    return defineScreen({
-        render({ ui }) {
-            ui.text('Save your changes?');
-            ui.text('Enter to confirm (true), Esc to cancel (false)', { tone: 'muted' });
-        },
-        key(event, { navigation }) {
-            if (event.key === 'enter') {
-                navigation.back(true);
-            }
-            if (event.key === 'escape') {
-                navigation.back(false);
-            }
-        },
-    });
-}
+import { confirm, createCli, defineScreen } from '@ind3x/cli-screens';
 
 const root = defineScreen<void, boolean>({
     async mount({ navigation, signal }) {
-        const confirmScreen = confirmation();
+        const confirmScreen = confirm({
+            message: 'Save your changes?',
+            confirmLabel: 'Save',
+            cancelLabel: 'Discard',
+        });
         const confirmed = await navigation.push(confirmScreen);
 
         if (!signal.aborted) {

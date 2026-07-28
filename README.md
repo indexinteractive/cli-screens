@@ -15,10 +15,13 @@ The library is architected around four core concepts:
 
 - **Stack based navigation:** push, pop, replace, reset, or exit screens while passing typed results back through promises.
 - **Composable flows:** combine built in screens without custom implementations:
+  - `confirm()` asks a yes-or-no question and returns a boolean.
   - `select()` presents typed choices and returns the selected value.
   - `menu()` presents choices with an optional Back action and selection callback.
   - `textInput()` collects, validates, and optionally masks text.
   - `message()` displays content until a configured key dismisses it.
+  - `paginate()` displays long text in terminal-sized pages.
+  - `spinner()` displays an animated status indicator.
   - `typewriter()` animates text and optionally dismisses itself when finished.
   - `sequence()` displays screens in order, including lazily created steps.
   - `withTask()` displays a screen while a typed asynchronous task runs.
@@ -59,6 +62,8 @@ Other examples and use cases can be found in `docs/recipes/`:
 - [Using a shared context](docs/recipes/shared-context.ts)
 - [Menu screen from async data](docs/recipes/async-menu-data.ts)
 - [Using `withTask()` hooks](docs/recipes/with-task.ts)
+- [Paginating long text](docs/recipes/paginate.ts)
+- [Displaying a spinner during a task](docs/recipes/spinner.ts)
 - [Passing input forward to the next screen](docs/recipes/pass-input-forward.ts)
 - [Retrieving results from `push()` and `back()`](docs/recipes/push-back-results.ts)
 
@@ -108,6 +113,21 @@ const port = await navigation.push(
 
 `menu()` adds a selectable `Back` action after its choices. Set `backLabel` to rename it or `backLabel: false` to hide it, such as on a root menu that already has an explicit exit action. Escape and Backspace also continue to navigate back.
 
+### Confirm
+
+```ts
+const approved = await navigation.push(
+  confirm({
+    message: "Save your changes?",
+    confirmLabel: "Save",
+    cancelLabel: "Discard",
+    initialValue: true,
+  }),
+);
+```
+
+`confirm()` returns `true` or `false`. Escape and Backspace return `false`.
+
 ### Text input
 
 ```ts
@@ -133,6 +153,30 @@ await navigation.push(
   }),
 );
 ```
+
+### Paginate
+
+```ts
+await navigation.push(
+  paginate({
+    title: "Release notes",
+    text: releaseNotes,
+  }),
+);
+```
+
+`paginate()` wraps text to the terminal width and divides it according to the available terminal height. Use the arrow keys to change pages and Escape or Backspace to return.
+
+### Spinner
+
+```ts
+const loading = withTask(
+  spinner({ text: "Loading users..." }),
+  ({ signal }) => api.loadUsers({ signal }),
+);
+```
+
+`spinner()` is a visual primitive and does not manage asynchronous work itself. Compose it with `withTask()` so the task owns the screen's lifetime.
 
 ### Typewriter
 
