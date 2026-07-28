@@ -2,7 +2,7 @@
 
 A small, zero-dependency, typescript-first, screen stack library intended to mimick the flow of game screens in interactive CLI applications.
 
-<video controls src="docs/assets/screens-demo.mov" title="Ind3x CLI Screens Demo"></video>
+<video controls src="https://github.com/user-attachments/assets/7dbeb7e3-1fba-4b10-94ef-65da7c8e8496" title="Ind3x CLI Screens Demo"></video>
 
 The library is architected around four core concepts:
 
