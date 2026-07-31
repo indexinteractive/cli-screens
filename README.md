@@ -2,6 +2,10 @@
 
 A small, zero-dependency, typescript-first, screen stack library intended to mimick the flow of game screens in interactive CLI applications.
 
+[![npm version](https://img.shields.io/npm/v/%40ind3x%2Fcli-screens.svg)](https://www.npmjs.com/package/@ind3x/cli-screens)
+[![npm downloads](https://img.shields.io/npm/dm/%40ind3x%2Fcli-screens.svg)](https://www.npmjs.com/package/@ind3x/cli-screens)
+[![npm license](https://img.shields.io/npm/l/%40ind3x%2Fcli-screens.svg)](https://www.npmjs.com/package/@ind3x/cli-screens)
+
 <video controls src="https://github.com/user-attachments/assets/7dbeb7e3-1fba-4b10-94ef-65da7c8e8496" title="Ind3x CLI Screens Demo"></video>
 
 The library is architected around four core concepts:
